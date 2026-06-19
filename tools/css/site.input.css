@@ -1038,15 +1038,16 @@
 @media (prefers-reduced-motion: reduce){ .reveal-swipe.armed > li { opacity: 1; animation: none; } }
 
 /* ===== Advanced content media rows (framed photo + tan ring accent + heading accent) ===== */
-/* Media-row photo: the WHOLE image shows at its natural aspect (never cropped). The frame
-   shrinks to fit the photo, is bounded to a sensible height, and is centred in its column. */
+/* Media-row photo: the WHOLE image shows at its natural aspect (never cropped), in a frame that
+   fits the photo and is centred beside the (vertically-centred) text. The copy is written long
+   enough that each text block is about the same height as its photo — see the per-section word
+   target in the render scripts. */
 .mrow-media { position: relative; display: flex; justify-content: center; width: 100%; }
-.mrow-frame { position: relative; z-index: 1; display: inline-block; max-width: 100%; background: #fff;
-  border: 6px solid #fff; border-radius: 1.25rem;
-  box-shadow: 0 0 0 1px rgba(37,64,99,.06), 0 26px 50px -26px rgba(37,64,99,.55); }
+.mrow-frame { display: inline-block; max-width: 100%; background: #fff; border: 6px solid #fff;
+  border-radius: 1.25rem; box-shadow: 0 0 0 1px rgba(37,64,99,.06), 0 26px 50px -26px rgba(37,64,99,.55); }
 .mrow-frame--pad { padding: 1rem; }
-.mrow-img { display: block; width: auto; height: auto; max-width: 100%; max-height: 24rem; border-radius: .85rem; }
-@media (min-width:1024px){ .mrow-img { max-height: 27rem; } }
+.mrow-img { display: block; width: auto; height: auto; max-width: 100%; max-height: 23rem; border-radius: .85rem; }
+@media (min-width:1024px){ .mrow-img { max-height: 26rem; } }
 .mrow-img--contain { object-fit: contain; }
 /* tan ring accent peeking out behind the framed photo */
 .mrow-media::after { content: ""; position: absolute; z-index: 0; right: 4%; bottom: -12px; width: 38%; height: 42%;

@@ -76,7 +76,7 @@ def all_pages():
     out = []
     for p in glob.glob(os.path.join(ROOT, "**", "*.html"), recursive=True):
         rel = os.path.relpath(p, ROOT)
-        if rel.startswith(("_source/", "node_modules/", "tools/", "image-check/", "_image-review/", "_photo-library/", "videos/")):
+        if rel.startswith(("_source/", "node_modules/", "tools/", "data/", "image-check/", "_image-review/", "_photo-library/", "videos/")):
             continue
         out.append(rel)
     return sorted(out)

@@ -524,11 +524,11 @@ def _split_row(inner_html, photo, reverse=False, bg="bg-white", contain=False, o
     side_txt = "reveal-right" if reverse else "reveal-left"
     media = f'<div class="mrow-media {side_img}">{frame}</div>'
     if reverse:   # image left, text right
-        pic_d = f'<div class="col-span-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 flex items-center justify-center">{media}</div>'
+        pic_d = f'<div class="mrow-pic col-span-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 flex items-center justify-center">{media}</div>'
         text_d = f'<div class="mrow-text {side_txt} col-span-12 lg:col-span-6 lg:col-start-7">{inner_html}</div>'
     else:         # image right, text left
         text_d = f'<div class="mrow-text {side_txt} col-span-12 lg:col-span-6 lg:col-start-1">{inner_html}</div>'
-        pic_d = f'<div class="col-span-12 lg:col-span-5 lg:col-start-8 flex items-center justify-center">{media}</div>'
+        pic_d = f'<div class="mrow-pic col-span-12 lg:col-span-5 lg:col-start-8 flex items-center justify-center">{media}</div>'
     return section(f'<div class="grid grid-cols-12 gap-7 lg:gap-12 items-center">{text_d}{pic_d}</div>',
                    bg=bg, pad="pt-8 lg:pt-14 pb-8 lg:pb-14", extra="logo-row overflow-hidden")
 

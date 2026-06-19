@@ -71,10 +71,14 @@ def service_page(s):
     hero_slug = _hm[0] if _hm else s["photo"]
     feat_photo = (E.match_photo(E._strip_tags(s.get("intro", "")) + " " + topic, salt=s["slug"] + "-feat", prefer=prefer)
                   or E.page_photos(s["slug"] + "-f", 1)[0])
+    # Expanded body copy (long enough that each text block ~ matches its photo's height) lives in
+    # data/service_bodies/<slug>.html when present; otherwise fall back to the inline bodyhtml.
+    _bf = os.path.join(E.S.ROOT, "data", "service_bodies", s["slug"] + ".html")
+    bodyhtml = open(_bf, encoding="utf-8").read().strip() if os.path.exists(_bf) else s["bodyhtml"]
     body = "\n".join([
         _hero(h1, s["lead"], hero_slug, s["kicker"]),
         section(prose(s["intro"]), bg="bg-white", extra="logo-row overflow-hidden"),
-        E.media_rows(s["bodyhtml"], seed=s["slug"], bg="bg-beige", topic=topic, prefer=prefer),
+        E.media_rows(bodyhtml, seed=s["slug"], bg="bg-beige", topic=topic, prefer=prefer),
         E.wolves_feature_panel(feat_photo, reverse=True, bg="bg-white", name=s["name"]),
         E.step_process(bg="bg-lightgrey", topic=s.get("topic", "Removal")),
         _related(s["related"]),
