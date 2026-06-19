@@ -1,0 +1,14 @@
+{
+  "name": "wolves-removals",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wolves Removals — static SEO site (NSR engine + MRM bible, original theme design)",
+  "scripts": {
+    "build:css": "tailwindcss -i ./tools/css/site.input.css -o ./css/site.min.css --minify",
+    "watch:css": "tailwindcss -i ./tools/css/site.input.css -o ./css/site.min.css --watch",
+    "build": "npm run build:css && python3 tools/build.py"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

@@ -1,0 +1,3 @@
+# No redirects. Legacy URLs are served as real (200) pages instead:
+#   /home/  /contact/  /quote/  — noindex landing pages with a clear CTA to the live page.
+#   /index.html serves the homepage (canonical points to /).
