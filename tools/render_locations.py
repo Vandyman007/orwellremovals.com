@@ -95,7 +95,7 @@ def town_page(slug):
         section(prose(_services_in(town)), bg="bg-white", extra="logo-row overflow-hidden"),
         section('<h2 class="relative leading-tight text-black text-center mb-6">' + esc(town) + ' &amp; the Surrounding Area</h2>'
                 + map_embed(town + ", Suffolk, UK", "Map of " + town + ", Suffolk", zoom=12), bg="bg-lightgrey"),
-        E.wolves_feature_panel(E.page_photos(slug + "-f", 1)[0], reverse=True, bg="bg-white", name=town),
+        E.standard_feature_panel(E.page_photos(slug + "-f", 1)[0], reverse=True, bg="bg-white", name=town),
         E.step_process(bg="bg-beige"),
         _related_towns(nearby, town),
         E.trusted_by("bg-white"),

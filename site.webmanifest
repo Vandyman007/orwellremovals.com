@@ -1,7 +1,7 @@
 {
-  "name": "Wolves Removals",
-  "short_name": "Wolves",
-  "description": "Family-run Sussex removals and storage — home and business moves, expert packing, secure storage and long-distance moves across Sussex, Surrey, Hampshire and Kent.",
+  "name": "Orwell Removals & Storage",
+  "short_name": "Orwell",
+  "description": "Family-run Ipswich & Suffolk removals and storage — home and business moves, expert packing, secure storage and long-distance moves across Suffolk and beyond.",
   "id": "/",
   "lang": "en-GB",
   "dir": "ltr",
@@ -36,7 +36,7 @@
     {
       "name": "Contact & Call Us",
       "short_name": "Contact",
-      "description": "Reach our Sussex team and tap to call",
+      "description": "Reach our Ipswich & Suffolk team and tap to call",
       "url": "/contact-us/",
       "icons": [{ "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" }]
     }

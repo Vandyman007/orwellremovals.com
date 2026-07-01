@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Site-wide configuration for Orwell Removals & Storage static build.
 Single source of truth for contact details, navigation, footer, services and locations.
-Read by tools/engine.py and the render scripts. Cloned from the Wolves config and
-rebranded for Orwell (Ipswich / Suffolk removals + storage; NOT BAR; no calculators).
+Read by tools/engine.py and the render scripts.
+Orwell (Ipswich / Suffolk removals + storage; NOT BAR; no calculators).
 """
 import os, re
 

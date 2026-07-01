@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Orwell Removals & Storage SEO audit — enforces the MRM-derived "bible" against the built site.
+"""Orwell Removals & Storage SEO audit — enforces the SEO "bible" against the built site.
 Configured for orwellremovals.com. Run from project root: python3 tools/audit.py
 Exit code 0 = all hard rules pass; 1 = failures. Warnings don't fail the build.
 """

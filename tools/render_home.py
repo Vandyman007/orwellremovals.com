@@ -149,7 +149,7 @@ def build():
         E.quote_bar(),
         services(),
         storage(),
-        E.wolves_feature_panel(E.page_photos("home-feature-panel", 1)[0], reverse=False, bg="bg-beige"),
+        E.standard_feature_panel(E.page_photos("home-feature-panel", 1)[0], reverse=False, bg="bg-beige"),
         areas(),
         E.step_process(bg="bg-beige"),
         E.trusted_by(),

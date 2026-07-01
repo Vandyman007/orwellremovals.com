@@ -1,8 +1,8 @@
 {
-  "name": "wolves-removals",
+  "name": "orwellremovals-com",
   "version": "1.0.0",
   "private": true,
-  "description": "Wolves Removals — static SEO site (NSR engine + MRM bible, original theme design)",
+  "description": "Orwell Removals & Storage — static SEO site for orwellremovals.com (Ipswich & Suffolk removals and storage)",
   "scripts": {
     "build:css": "tailwindcss -i ./tools/css/site.input.css -o ./css/site.min.css --minify",
     "watch:css": "tailwindcss -i ./tools/css/site.input.css -o ./css/site.min.css --watch",

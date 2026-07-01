@@ -162,7 +162,7 @@ def about_us():
         ), bg="bg-white", extra="logo-row overflow-hidden"),
         E.trusted_by(),
         areas_block(),
-        E.wolves_feature_panel(E.page_photos("about-feature", 1)[0], reverse=True, bg="bg-beige"),
+        E.standard_feature_panel(E.page_photos("about-feature", 1)[0], reverse=True, bg="bg-beige"),
     ])
     faqs = [
         ("How long has Orwell Removals &amp; Storage been trading?",

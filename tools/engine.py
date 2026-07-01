@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Wolves Removals static render engine.
+"""Orwell Removals & Storage static render engine.
 
-Reproduces the original wolvesremovals theme chrome (header / footer / sections)
-using the SAME compiled stylesheet (css/site.min.css) + Barlow fonts + brand
-classes, while emitting markup that satisfies the MRM SEO bible
+Renders the site chrome (header / footer / sections) using the compiled
+stylesheet (css/site.min.css) + Barlow fonts + brand classes, while emitting
+markup that satisfies the SEO bible
 (canonical, OG/Twitter, JSON-LD LocalBusiness + Breadcrumb + FAQPage,
 clickable tel/mailto, descriptive anchors, alt text, etc.).
 
@@ -497,7 +497,7 @@ def _split_row(inner_html, photo, reverse=False, bg="bg-white", contain=False, o
     """Tight text+image row. The image is ABSOLUTELY positioned inside a relative box,
     so it never pushes the row taller than the text — the text sets the height and the
     photo crops to fit (no whitespace, ever). Sides alternate (reverse=image-left). The
-    faded Wolves logo watermark sits behind the text side (logo-row), like the home page.
+    faded brand logo watermark sits behind the text side (logo-row), like the home page.
     square=True instead shows the WHOLE photo in a 1:1 framed card (object-contain over a
     blurred fill of the same image), vertically centred beside the text."""
     src = "images/photos/" + photo[0] + ".webp"
@@ -517,19 +517,19 @@ def _split_row(inner_html, photo, reverse=False, bg="bg-white", contain=False, o
         return section(f'<div class="grid grid-cols-12 gap-7 lg:gap-12 items-center">{text_d}{pic_d}</div>',
                        bg=bg, pad="pt-8 lg:pt-14 pb-8 lg:pb-14", extra="logo-row overflow-hidden")
     # Default: show the WHOLE photo at its natural aspect (never cropped), in a white frame that
-    # fits the image, bounded to a sensible height, and centred beside the vertically-centred text.
+    # fits the image. Row is TOP-aligned so the H2 sits level with the top of the photo.
     icls = "mrow-img mrow-img--contain" if contain else "mrow-img"
     frame = f'<div class="mrow-frame{" mrow-frame--pad" if contain else ""}">{img(src, photo[1], cls=icls)}</div>'
     side_img = "reveal-left" if reverse else "reveal-right"
     side_txt = "reveal-right" if reverse else "reveal-left"
     media = f'<div class="mrow-media {side_img}">{frame}</div>'
     if reverse:   # image left, text right
-        pic_d = f'<div class="mrow-pic col-span-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 flex items-center justify-center">{media}</div>'
+        pic_d = f'<div class="mrow-pic col-span-12 lg:col-span-5 lg:col-start-1 lg:row-start-1 flex items-start justify-center">{media}</div>'
         text_d = f'<div class="mrow-text {side_txt} col-span-12 lg:col-span-6 lg:col-start-7">{inner_html}</div>'
     else:         # image right, text left
         text_d = f'<div class="mrow-text {side_txt} col-span-12 lg:col-span-6 lg:col-start-1">{inner_html}</div>'
-        pic_d = f'<div class="mrow-pic col-span-12 lg:col-span-5 lg:col-start-8 flex items-center justify-center">{media}</div>'
-    return section(f'<div class="grid grid-cols-12 gap-7 lg:gap-12 items-center">{text_d}{pic_d}</div>',
+        pic_d = f'<div class="mrow-pic col-span-12 lg:col-span-5 lg:col-start-8 flex items-start justify-center">{media}</div>'
+    return section(f'<div class="grid grid-cols-12 gap-7 lg:gap-12 items-start">{text_d}{pic_d}</div>',
                    bg=bg, pad="pt-8 lg:pt-14 pb-8 lg:pb-14", extra="logo-row overflow-hidden")
 
 def media_rows(inner_html, seed, bg="bg-white", used=None, group=2, force=None, force_contain=False, force_pos=None, pins=None, square=False, topic=None, prefer=None):
@@ -630,7 +630,7 @@ def media_body(html, seed, bg="bg-white", used=None, group=2, span="lg:col-span-
 def map_embed(query, title, cls="", zoom=10):
     """No-key Google Maps area embed (frame-src www.google.com is allow-listed in _headers).
     items-stretch + h-full lets it match the height of the text beside it. `query` like
-    'Petersfield, Hampshire, UK'; lower `zoom` for wider county views."""
+    'Ipswich, Suffolk, UK'; lower `zoom` for wider county views."""
     from urllib.parse import quote as _q
     src = f"https://www.google.com/maps?q={_q(query)}&z={zoom}&output=embed"
     return (f'<div class="rounded-xl overflow-hidden shadow-custom border border-border '
@@ -683,7 +683,7 @@ def feature_panel(heading_html, body_html, photo, reverse=False, bg="bg-white", 
         f'<div class="fp-grid">{media}{content}</div>'
         '</div></div></div>', bg=bg)
 
-def wolves_feature_panel(photo, reverse=False, bg="bg-white", name=None):
+def standard_feature_panel(photo, reverse=False, bg="bg-white", name=None):
     """Standard slate feature panel for pages without their own feature section.
     `name` makes the heading a UNIQUE, page-specific <h2> (e.g. on service pages); without
     it the heading is a styled non-heading (recurring trust block) so it doesn't create a
@@ -866,7 +866,7 @@ def quote_band():
         f'{form}</div></div>'
         '</div></div></section>')
 
-# ---- sticky floating action buttons (quote / call), like Mark Ratcliffe ----
+# ---- sticky floating action buttons (quote / call) ----
 def fabs():
     # Two sticky action buttons: "Free Quote" bottom-left, "Call Us" bottom-right.
     b = S.BUSINESS
@@ -1258,14 +1258,14 @@ def prose(html_content, center=False, span="lg:col-span-8 lg:col-start-3"):
 
 # Self-hosted promo videos (in /videos/). name/description are PLAIN text (escaped for HTML, raw for schema).
 VIDEO_META = {
-    "wolves-removals-promo-b": ("Wolves Removals — Sussex Removals & Storage",
-        "Meet the Wolves Removals team — the people, vehicles and care behind our Sussex moves.", "PT1M13S"),
-    "wolves-removals-promo-a": ("Wolves Removals — Sussex Removals & Storage",
-        "A look at Wolves Removals across Sussex, Surrey, Kent and Hampshire.", "PT1M"),
-    "storage-container-promo-b": ("Secure Storage with Wolves Removals",
-        "Our team loading and storing mobile storage containers securely at our Sussex depot.", "PT29S"),
-    "storage-container-promo-a": ("Secure Storage with Wolves Removals",
-        "Mobile storage containers loaded and stored securely by the Wolves Removals team.", "PT33S"),
+    "orwell-removals-promo-b": ("Orwell Removals & Storage — Ipswich & Suffolk Removals & Storage",
+        "Meet the Orwell Removals team — the people, vehicles and care behind our Suffolk moves.", "PT1M13S"),
+    "orwell-removals-promo-a": ("Orwell Removals & Storage — Ipswich & Suffolk Removals & Storage",
+        "A look at Orwell Removals & Storage across Ipswich and Suffolk.", "PT1M"),
+    "storage-container-promo-b": ("Secure Storage with Orwell Removals & Storage",
+        "Our team loading and storing mobile storage containers securely at our Suffolk depot.", "PT29S"),
+    "storage-container-promo-a": ("Secure Storage with Orwell Removals & Storage",
+        "Mobile storage containers loaded and stored securely by the Orwell Removals team.", "PT33S"),
     "packing-paintings-promo": ("Packing & Crating Fine Art and Paintings",
         "How our specialists wrap, pack and custom-crate paintings and antiques for safe transport.", "PT2M48S"),
     "packing-mirror-promo": ("Packing & Protecting Mirrors",
@@ -1286,7 +1286,7 @@ def video_embed(slug, bg="bg-white", heading=True, aside=None):
     text stays within the video's height; stacks above the video on mobile). When set,
     it replaces the centred heading/description (the description still feeds the JSON-LD)."""
     name, desc, dur = VIDEO_META[slug]
-    base, poster, mp4 = "https://wolves-removals.co.uk", f"/videos/{slug}.webp", f"/videos/{slug}.mp4"
+    base, poster, mp4 = S.SITE_URL, f"/videos/{slug}.webp", f"/videos/{slug}.mp4"
     schema = {"@context": "https://schema.org", "@type": "VideoObject", "name": name, "description": desc,
               "thumbnailUrl": [base + poster], "contentUrl": base + mp4, "uploadDate": "2026-06-01", "duration": dur}
     # Real poster dimensions set the player's width/height (no CLS) and let portrait
@@ -1915,7 +1915,7 @@ def blog_feed(page_path=None, n=3):
 def render_page(*, title, description, canonical_path, body, og_image=None,
                 robots="index, follow", breadcrumb=None, extra_schema=None, active="", show_quote=True, dedupe=True, show_fabs=True,
                 show_trust_reviews=True):
-    # Hero pinning: if this page had a curated hero in the 'Old wolves site' snapshot,
+    # Hero pinning: if this page has a curated hero in the hero_map snapshot,
     # restore it — swap the eager hero <img> and point og/twitter/preload at it — so the
     # hero never drifts when the photo-rotation pool changes.
     _ov = OLD_HEROES.get(canonical_path)

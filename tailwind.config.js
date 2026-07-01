@@ -6,8 +6,6 @@ module.exports = {
     './blog/**/*.html',
     './helpful-tips/**/*.html',
     './tools/*.py',
-    './js/blog-search.js',
-    './js/box-shop.js',
     ],
   theme: {
     container: {
@@ -38,8 +36,7 @@ module.exports = {
       },
       colors: {
         // Orwell Removals & Storage palette (navy + royal blue + tan, from logo + brand photos).
-        // Token NAMES are kept identical to the Wolves base so the engine/CSS need no class renames;
-        // only the VALUES change. Roles noted inline.
+        // Token names are stable so the engine/CSS need no class renames; roles noted inline.
         transparent: 'transparent',
         current: 'currentColor',
         'white': '#ffffff',
@@ -56,7 +53,7 @@ module.exports = {
         'border': '#E7E7E7',
       },
       listStyleImage: {
-        checkmark: 'url("/wp-content/themes/wolvesremovals/img/check.svg")',
+        checkmark: 'url("/images/brand/check.svg")',
       },
     }
   },

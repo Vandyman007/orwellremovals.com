@@ -1,4 +1,4 @@
-/* Wolves Removals — photo-strip carousel
+/* Orwell Removals & Storage — photo-strip carousel
    Horizontal scroll-snap gallery with prev/next arrows. The slide nearest the
    centre of the viewport gets `.is-center`, which scales it up 20% vs siblings.
    Progressive enhancement: with JS off the strip is still a scrollable row. */

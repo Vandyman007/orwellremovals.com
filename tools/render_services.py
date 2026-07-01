@@ -79,7 +79,7 @@ def service_page(s):
         _hero(h1, s["lead"], hero_slug, s["kicker"]),
         section(prose(s["intro"]), bg="bg-white", extra="logo-row overflow-hidden"),
         E.media_rows(bodyhtml, seed=s["slug"], bg="bg-beige", topic=topic, prefer=prefer),
-        E.wolves_feature_panel(feat_photo, reverse=True, bg="bg-white", name=s["name"]),
+        E.standard_feature_panel(feat_photo, reverse=True, bg="bg-white", name=s["name"]),
         E.step_process(bg="bg-lightgrey", topic=s.get("topic", "Removal")),
         _related(s["related"]),
         E.trusted_by("bg-white"),
