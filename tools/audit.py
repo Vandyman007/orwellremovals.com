@@ -25,6 +25,21 @@ NOINDEX_OK = {"404.html", "home/index.html", "contact/index.html", "quote/index.
 R9_EXEMPT = {"blog/index.html", "gallery/index.html"}
 GENERIC_ANCHORS = {"click here", "read more", "learn more", "here", "more", "read article", "book", "find out more"}
 
+# R20 ARIA required owned children (WAI-ARIA): an authored widget container MUST contain
+# at least one of its required child roles, or assistive tech reports it as broken
+# (e.g. axe: "Certain ARIA roles must contain particular children" — role="tablist"
+# with no role="tab" inside). Restricted to purely author-driven widget roles that have
+# NO native HTML fallback, so native <ul>/<table>/<select> never trip it.
+ARIA_REQUIRED_CHILDREN = {
+    "tablist":    ["tab"],
+    "menu":       ["menuitem", "menuitemcheckbox", "menuitemradio"],
+    "menubar":    ["menuitem", "menuitemcheckbox", "menuitemradio"],
+    "radiogroup": ["radio"],
+    "listbox":    ["option"],
+    "tree":       ["treeitem"],
+    "feed":       ["article"],
+}
+
 def page_url(rel):
     if rel == "index.html":
         return "/"
@@ -248,6 +263,14 @@ def run():
         if 'content="noindex' in h and rel not in NOINDEX_OK:
             fail("R17-noindex", rel, "unexpected noindex")
 
+        # R20 ARIA required owned children — block any authored widget container that
+        # lacks its required child role (e.g. role="tablist" with no role="tab").
+        page_roles = set(re.findall(r'\brole="([a-zA-Z]+)"', h))
+        for _container, _kids in ARIA_REQUIRED_CHILDREN.items():
+            if _container in page_roles and not (page_roles & set(_kids)):
+                fail("R20-aria-children", rel,
+                     f'role="{_container}" present but no required child role ({"/".join(_kids)})')
+
     # cross-page uniqueness
     for t, fs in titles.items():
         if len(fs) > 1: fail("R2-title-unique", fs[1], f"duplicate title '{t[:40]}' ({len(fs)} pages)")
@@ -273,6 +296,37 @@ def run():
         _nwords = len(stem.split("-"))
         if src.startswith("/images/photos/") and not (3 <= _nwords <= 6):
             warn("R19-img-name-len", src, f"{_nwords} words (must be 3-6 descriptive words)")
+
+    # R21 sitemap integrity — sitemap.xml must list EXACTLY the indexable published pages:
+    # no fragment/excluded-dir URLs (e.g. /data/service_bodies/*.html), no noindex pages,
+    # no dead URLs, and no indexable page left out (orphans).
+    smp = os.path.join(ROOT, "sitemap.xml")
+    pageset = set(pages)
+    if not os.path.exists(smp):
+        fail("R21-sitemap", "sitemap.xml", "missing sitemap.xml")
+    else:
+        sm = open(smp, encoding="utf-8").read()
+        def _rel_for_url(u):
+            if u == "/": return "index.html"
+            return (u.strip("/") + "/index.html") if u.endswith("/") else u.strip("/")
+        listed = set()
+        for u in re.findall(r"<loc>" + re.escape(SITE) + r"(/[^<]*)</loc>", sm):
+            r = _rel_for_url(u)
+            listed.add(r)
+            fp = os.path.join(ROOT, r)
+            if not os.path.exists(fp):
+                fail("R21-sitemap-dead", "sitemap.xml", f"{u} -> no file")
+            elif r not in pageset:
+                fail("R21-sitemap-nonpage", "sitemap.xml", f"{u} not a published page (fragment/excluded dir)")
+            elif 'content="noindex' in open(fp, encoding="utf-8").read():
+                fail("R21-sitemap-noindex", "sitemap.xml", f"{u} is noindex but listed in sitemap")
+        for rel in pages:
+            if rel == "404.html":
+                continue
+            if 'content="noindex' in open(os.path.join(ROOT, rel), encoding="utf-8").read():
+                continue
+            if rel not in listed:
+                fail("R21-sitemap-orphan", rel, "indexable page missing from sitemap.xml")
 
     # ---- per-page table (--by-page) ----
     if "--by-page" in sys.argv:

@@ -48,20 +48,6 @@
     @media (max-width: 600px) { .ti-badge { max-width: 56vw; transform: scale(.88); transform-origin: bottom right; } }
     .tick-list { @apply pl-0 list-none; }
     .tick-list li { @apply list-none relative py-1 sm:py-2 pl-10 before:content-[''] before:bg-[url('/images/brand/check.svg')] before:bg-no-repeat before:w-6 before:h-full before:bg-center before:absolute before:top-0 before:left-0 before:z-10 before:overflow-hidden; }
-    .proc-step { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%);
-      /* solid black border following the chevron silhouette (a real border would be clipped).
-         8 stacked offsets build a clearly-visible ~3px outline around the angled edges. */
-      filter: drop-shadow(3px 0 0 #262626) drop-shadow(-3px 0 0 #262626)
-              drop-shadow(0 3px 0 #262626) drop-shadow(0 -3px 0 #262626)
-              drop-shadow(2px 2px 0 #262626) drop-shadow(-2px 2px 0 #262626)
-              drop-shadow(2px -2px 0 #262626) drop-shadow(-2px -2px 0 #262626); }
-    .proc-scroll { scrollbar-width: none; -ms-overflow-style: none; scroll-padding-left: 1rem; }
-    .proc-scroll::-webkit-scrollbar { display: none; }
-    /* step-process mobile swipe dots */
-    .proc-dots { display: flex; justify-content: center; gap: .55rem; margin-top: 1rem; }
-    .proc-dot { width: .7rem; height: .7rem; border-radius: 9999px; background: #cbcfd4; border: 0; padding: 0; cursor: pointer; transition: background .2s ease, transform .2s ease; }
-    .proc-dot.is-active { background: #262626; transform: scale(1.2); }
-    @media (min-width: 768px) { .proc-dots { display: none; } }
     /* Hero text panel — translucent box over a clear, vibrant hero image.
        Hugs its content (clear image above/below) and bleeds to the left
        viewport edge on desktop while keeping text aligned to the container. */
@@ -514,9 +500,6 @@
 /* white-disc variant (step-process icons) — white background makes the green icon pop */
 .ico-badge--white { background: #fff; border-color: #e3e3e3; }
 .ico-badge--white, .ico-badge--white img { transition: background .2s ease, border-color .2s ease, filter .2s ease; }
-/* rollover inverts the badge: green disc + white icon */
-.proc-step:hover .ico-badge--white { background: #02be7c; border-color: #02be7c; }
-.proc-step:hover .ico-badge--white img { filter: brightness(0) invert(1); mix-blend-mode: normal; }
 .ico-badge img { mix-blend-mode: multiply; }
 /* on a CREME-hover card the bg becomes creme too, so invert the medallion (black disc,
    creme glyph) to keep it visible. On grey-hover cards the medallion stays creme (pops on grey). */

@@ -25,7 +25,7 @@ def main():
     urls = []
     for p in sorted(glob.glob(os.path.join(ROOT, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(p, ROOT)
-        if rel.startswith(("_source/", "node_modules/", "tools/", "_image-review/",
+        if rel.startswith(("_source/", "node_modules/", "tools/", "data/", "_image-review/",
                            "_photo-library/", "image-check/", "videos/")) or rel == "404.html":
             continue
         h = open(p, encoding="utf-8").read()
