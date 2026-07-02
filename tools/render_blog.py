@@ -61,7 +61,9 @@ def blog_post(slug, content, rendered):
         section(prose(f'<p class="text-darkgrey text-sm uppercase tracking-wide font-semibold mb-2">{esc(category)} &middot; '
                       f'Orwell Removals &amp; Storage</p><div class="text-lg xl:text-xl font-medium text-black">{content["lead"]}</div>'),
                 bg="bg-white"),
-        E.media_rows(body_inner, seed=slug, bg="bg-beige", topic=title + " " + spec.get("kw", "")),
+        # group=3: blog sections are ~3 paragraphs, so each H2 section becomes ONE tidy row
+        # (heading at the top) instead of a heading row + a sparse single-paragraph row.
+        E.media_rows(body_inner, seed=slug, bg="bg-beige", group=3, topic=title + " " + spec.get("kw", "")),
         E.trusted_by("bg-white"),
         _related(slug, category, rendered),
     ])

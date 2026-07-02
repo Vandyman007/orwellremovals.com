@@ -575,11 +575,12 @@ def media_rows(inner_html, seed, bg="bg-white", used=None, group=2, force=None, 
             return v
     if not blocks:
         return section(prose(inner_html), bg=nextbg())
-    # Group blocks into rows: a sub-heading (<h3>/<h4>) starts a new row; otherwise pack up
+    # Group blocks into rows: any heading (<h2>/<h3>/<h4>) starts a new row so its section
+    # heading always sits at the TOP of a row (never stranded mid/bottom); otherwise pack up
     # to `group` paragraphs. Every non-paragraph element rides along, so nothing is dropped.
     groups, cur, pc = [], [], 0
     for tag, full in blocks:
-        if cur and (tag in ("h3", "h4") or (tag == "p" and pc >= group)):
+        if cur and (tag in ("h2", "h3", "h4") or (tag == "p" and pc >= group)):
             groups.append(cur); cur, pc = [], 0
         cur.append(full)
         if tag == "p":
