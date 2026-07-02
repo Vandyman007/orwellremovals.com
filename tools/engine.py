@@ -375,8 +375,31 @@ PHOTOS = [
     ('orwell-removals-crew-team-portrait', 'Two Orwell Removals crew members posing for a team portrait'),
     ('removals-lorry-outside-stone-house', 'Orwell Removals lorry parked outside a large stone country house'),
     ('removals-lorry-parked-residential-street-3', 'Orwell Removals lorry parked on a residential street on a sunny day'),
+    # ---- 22 photos added from the customer's June 2026 upload ----
+    ('orwell-crew-of-four-with-lorry', 'The Orwell Removals crew of four in front of a box lorry outside a home'),
+    ('armchair-in-orwell-padded-cover', 'An armchair wrapped in a padded Orwell Removals furniture cover'),
+    ('suite-wrapped-in-padded-covers', 'A sofa and armchairs wrapped in padded Orwell Removals covers in a living room'),
+    ('orwell-branded-wardrobe-cartons-stacked', 'Orwell Removals branded wardrobe cartons stacked in the van'),
+    ('cartons-packed-inside-removal-van', 'Cartons packed neatly inside an Orwell Removals van'),
+    ('upright-piano-strapped-in-van', 'An upright piano padded and strapped inside an Orwell removal van'),
+    ('divan-bed-base-bubble-wrapped', 'A divan bed base bubble-wrapped and ready for an Orwell move'),
+    ('padded-cover-protecting-tall-mirror', 'A padded Orwell Removals cover protecting a tall mirror in a doorway'),
+    ('staircase-carpet-protected-with-film', 'A staircase carpet protected with film during an Orwell house move'),
+    ('hallway-floor-felt-runner-protection', 'A hallway floor protected with felt runners and film during a move'),
+    ('item-bubble-wrapped-for-protection', 'A household item bubble-wrapped for protection before an Orwell move'),
+    ('chest-of-drawers-bubble-wrapped', 'A chest of drawers bubble-wrapped for protection during a move'),
+    ('furniture-in-furni-soft-wrap', 'Furniture packed in Furni-Soft protective wrap ready to move'),
+    ('packed-storage-container-warehouse', 'A packed wooden storage container in the Orwell storage warehouse'),
+    ('floor-protection-runner-doorway', 'A felt floor-protection runner laid through a doorway during a move'),
+    ('wardrobe-box-with-hanging-clothes', 'A portable wardrobe box with clothes hanging on the rail'),
+    ('orwell-lorry-at-orwell-bridge', 'An Orwell Removals lorry on the road beneath the Orwell Bridge in Ipswich'),
+    ('felt-runners-protecting-floors', 'Felt runners protecting carpet and wood floors during a house move'),
+    ('canvas-moving-straps-on-rack', 'Canvas moving straps hung on a rack at the Orwell Removals depot'),
+    ('stacks-of-removal-blankets', 'Stacks of folded removal blankets at the Orwell Removals depot'),
+    ('orwell-lorries-then-and-now', 'Orwell Removals lorries then and now, showing the older and current livery'),
+    ('hallway-stairs-fully-protected', 'A hallway and stairs fully protected with covers and mats during a move'),
 ]
-# 265 customer-approved photos (44 original + 221 added from the full approved set).
+# 287 customer-approved photos (265 prior + 22 added from the June 2026 upload).
 
 def page_photos(seed, n=5):
     """Deterministic, distinct photos for a page (variety across pages, no dupes within).
